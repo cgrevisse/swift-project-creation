@@ -4,17 +4,37 @@
 	"description": "Allows to create an empty Swift package in VS Code.",
 	"author": {
 		"name": "Christian Grévisse",
-		"email": "christian.grevisse@uni.lu"
+		"email": "christian.grevisse@uni.lu",
+		"url": "https://github.com/cgrevisse"
 	},
 	"publisher": "cgrevisse",
 	"license": "MIT",
 	"version": "0.0.1",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/cgrevisse/swift-project-creation"
+	},
+	"icon": "images/icon.png",
 	"engines": {
 		"vscode": "^1.30.0"
 	},
+	"galleryBanner": {
+		"color": "#FC823F",
+		"theme": "light"
+	  },
 	"categories": [
 		"Other"
 	],
+	"keywords": [
+		"swift",
+		"linux",
+		"development"
+	  ],
+	"bugs": {
+		"url": "https://github.com/cgrevisse/swift-project-creation/issues",
+		"email": "christian.grevisse@uni.lu"
+	},
+	"homepage": "https://github.com/cgrevisse/swift-project-creation/blob/master/README.md",
 	"activationEvents": [
 		"onCommand:extension.createSwiftProject"
 	],
