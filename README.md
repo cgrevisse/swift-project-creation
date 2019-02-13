@@ -4,6 +4,9 @@ This extension allows to create an empty Swift package in VS Code. The necessary
 
 This extension works well with the [Maintained Swift Development Environment](https://marketplace.visualstudio.com/items?itemName=vknabel.vscode-swift-development-environment) maintained by [Valentin Knabel](https://github.com/vknabel).
 
+## Installation
+You can install this extension from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=cgrevisse.swift-project-creation).
+
 # Usage
 
 * Install the extension and reload VS Code.

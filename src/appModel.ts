@@ -12,8 +12,8 @@ export class AppModel {
 				let rootFolder = uris[0].fsPath;
 
 				this.selectPackageName(rootFolder).then(packageName => {
-					if(!packageName || !/^\w+$/g.test(packageName)) {
-						this.showError("The package name must be composed of letters and digits only!");
+					if(!packageName || !/^[A-Za-z0-9_\-]+$/g.test(packageName)) {
+						this.showError("The package name must be composed of letters, digits, hyphens and underspaces only!");
 						return;
 					}
 
