@@ -1,7 +1,7 @@
 {
 	"name": "swift-project-creation",
-	"displayName": "Swift Package Creation",
-	"description": "Allows to create an empty Swift package in VS Code.",
+	"displayName": "Swift Project Creation",
+	"description": "Allows to create an empty Swift project in VS Code.",
 	"author": {
 		"name": "Christian Grévisse",
 		"email": "christian.grevisse@uni.lu",
@@ -9,7 +9,7 @@
 	},
 	"publisher": "cgrevisse",
 	"license": "MIT",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/cgrevisse/swift-project-creation"
@@ -43,7 +43,7 @@
 		"commands": [
 			{
 				"command": "extension.createSwiftProject",
-				"title": "Create a Swift Package"
+				"title": "Create a Swift Project"
 			}
 		]
 	},

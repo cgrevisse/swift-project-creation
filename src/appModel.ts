@@ -5,7 +5,7 @@ import * as path from 'path';
 export class AppModel {
 
     createSwiftProject() {
-		this.selectPackageRootFolder().then(uris => {
+		this.selectProjectRootFolder().then(uris => {
 				if(!uris || uris.length == 0) 
 					return;
 
@@ -13,17 +13,17 @@ export class AppModel {
 
 				this.selectPackageName(rootFolder).then(packageName => {
 					if(!packageName || !/^[A-Za-z0-9_\-]+$/g.test(packageName)) {
-						this.showError("The package name must be composed of letters, digits, hyphens and underspaces only!");
+						this.showError("The project name must be composed of letters, digits, hyphens and underspaces only!");
 						return;
 					}
 
-					this.createPackageFiles(rootFolder, packageName)										
+					this.createProjectFiles(rootFolder, packageName)										
 				})
 			}
 		);
 	}
 
-	selectPackageRootFolder() {
+	selectProjectRootFolder() {
 		return vscode.window.showOpenDialog({
 			'canSelectFiles': false,
 			'canSelectFolders': true,
@@ -34,12 +34,12 @@ export class AppModel {
 	selectPackageName(rootFolder: string) {
 		return vscode.window.showInputBox({
 			'ignoreFocusOut': true,
-			'prompt': 'Choose a name for your Swift package',
+			'prompt': 'Choose a name for your Swift project',
 			'placeHolder': 'e.g. Exercise1 (only letters and digits)',
 		});
 	}
 
-	createPackageFiles(rootFolder: string, packageName: string) {
+	createProjectFiles(rootFolder: string, packageName: string) {
 		let projectFolder = path.join(rootFolder, packageName);
 		let sourcesFolder = path.join(projectFolder, "Sources");
 		let vscodeFolder = path.join(projectFolder, ".vscode");
@@ -54,7 +54,7 @@ export class AppModel {
 
 			this.openProject(projectFolder);
 		} catch(error) {
-			this.showError("Could not create the package: " + error);
+			this.showError("Could not create the project: " + error);
 			return;
 		}
 	}
