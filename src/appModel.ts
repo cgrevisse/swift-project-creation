@@ -6,8 +6,9 @@ export class AppModel {
 
     createSwiftProject() {
 		this.selectProjectRootFolder().then(uris => {
-				if(!uris || uris.length == 0) 
+				if(!uris || uris.length === 0) {
 					return;
+				}
 
 				let rootFolder = uris[0].fsPath;
 
@@ -17,8 +18,8 @@ export class AppModel {
 						return;
 					}
 
-					this.createProjectFiles(rootFolder, packageName)										
-				})
+					this.createProjectFiles(rootFolder, packageName);										
+				});
 			}
 		);
 	}
@@ -42,13 +43,16 @@ export class AppModel {
 	createProjectFiles(rootFolder: string, packageName: string) {
 		let projectFolder = path.join(rootFolder, packageName);
 		let sourcesFolder = path.join(projectFolder, "Sources");
+		let targetFolder = path.join(sourcesFolder, packageName);
 		let vscodeFolder = path.join(projectFolder, ".vscode");
 
 		try {
 			this.makeDirSync(projectFolder);
 
 			this.createPackageFile(projectFolder, packageName);
-			this.createMainFile(sourcesFolder);
+			this.createReadme(projectFolder, packageName);
+			this.createGitIgnore(projectFolder);
+			this.createMainFile(targetFolder);
 			this.createLaunchFile(vscodeFolder, packageName);
 			this.createTasksFile(vscodeFolder, packageName);
 
@@ -60,17 +64,40 @@ export class AppModel {
 	}
 
 	createPackageFile(projectFolder: string, packageName: string) {
-		this.makeFileSync(path.join(projectFolder, "Package.swift"), `// swift-tools-version:4.0
+		let swiftToolsVersion = vscode.workspace.getConfiguration('swift-project-creation.swift').get('toolsVersion', '5.3');
+
+		this.makeFileSync(path.join(projectFolder, "Package.swift"), `// swift-tools-version:${swiftToolsVersion}
 import PackageDescription
 
 let package = Package(
 	name: "${packageName}",
+	products: [
+		.executable(name: "${packageName}", targets: ["${packageName}"]),
+	],
+	dependencies: [],
 	targets: [
-		.target(name: "${packageName}", path: "Sources")
+		.target(name: "${packageName}", dependencies: [])
 	]
 )
 `
 		);
+	}
+
+	createReadme(projectFolder: string, packageName: string) {
+		this.makeFileSync(path.join(projectFolder, "README.md"), `# ${packageName}
+
+A description of this package.
+`);
+	}
+
+	createGitIgnore(projectFolder: string) {
+		this.makeFileSync(path.join(projectFolder, ".gitignore"), `.DS_Store
+/.build
+/Packages
+/*.xcodeproj
+xcuserdata/
+/.swiftpm
+`);
 	}
 
 	createMainFile(sourcesFolder: string) {
@@ -92,7 +119,7 @@ let package = Package(
 					"preLaunchTask": "swift-build"
 				}
 			]
-		} 
+		};
 
 		this.makeFileSync(path.join(vscodeFolder, "launch.json"), JSON.stringify(launch, null, 4));
 	}
@@ -120,15 +147,16 @@ let package = Package(
 					}
 				}
 			]
-		}
+		};
 
 		this.makeFileSync(path.join(vscodeFolder, "tasks.json"), JSON.stringify(tasks, null, 4));
 	}
 
 	makeDirSync(dir: string) {
 		// Source: https://github.com/ritwickdey/vscode-create-file-folder/blob/master/src/appModel.ts
-		if (fs.existsSync(dir)) 
+		if (fs.existsSync(dir)) {
 			return;
+		}
         if (!fs.existsSync(path.dirname(dir))) {
             this.makeDirSync(path.dirname(dir));
         }
@@ -148,7 +176,7 @@ let package = Package(
 		await vscode.commands.executeCommand("vscode.openFolder", vscode.Uri.file(projectFolder), false);
 		await vscode.commands.executeCommand("vscode.open", vscode.Uri.file(path.join(projectFolder, "Sources", "main.swift")));
 		/*
-		// Issue: https://github.com/Microsoft/vscode/issues/43677
+		// Issue: https://github.com/Microsoft/vscode/issues/43677; https://github.com/microsoft/vscode/issues/76106; https://github.com/microsoft/vscode/issues/69335
 		await vscode.workspace.openTextDocument(vscode.Uri.file(path.join(projectFolder, "Sources", "main.swift"))).then(doc => {
 			vscode.window.showTextDocument(doc);
 		});

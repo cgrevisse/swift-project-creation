@@ -45,7 +45,19 @@
 				"command": "extension.createSwiftProject",
 				"title": "Create a Swift Project"
 			}
-		]
+		],
+		"configuration": {
+			"title": "Swift Project Creation",
+			"properties": {
+				"swift-project-creation.swift.toolsVersion": {
+					"description": "Declares the minimum version of Swift required to build this package.",
+					"type": "string",
+					"default": "5.3",
+					"pattern": "^\\d+\\.(\\d+\\.)?\\d+$",
+					"patternErrorMessage": "Enter a version number, e.g., 5.3 or 4.2.1"
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
