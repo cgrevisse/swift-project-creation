@@ -9,7 +9,7 @@
 	},
 	"publisher": "cgrevisse",
 	"license": "MIT",
-	"version": "0.0.3",
+	"version": "1.0.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/cgrevisse/swift-project-creation"
@@ -21,7 +21,7 @@
 	"galleryBanner": {
 		"color": "#FC823F",
 		"theme": "light"
-	  },
+	},
 	"categories": [
 		"Other"
 	],
@@ -29,7 +29,7 @@
 		"swift",
 		"linux",
 		"development"
-	  ],
+	],
 	"bugs": {
 		"url": "https://github.com/cgrevisse/swift-project-creation/issues",
 		"email": "christian.grevisse@uni.lu"
