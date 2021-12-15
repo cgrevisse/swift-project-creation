@@ -20,7 +20,7 @@ You can install this extension from the [Visual Studio Marketplace](https://mark
 
 ## Contributors
 
-* Christian Grévisse, [@cgrevisse](https://github.com/cgrevisse), University of Luxembourg.
+* Christian Grévisse, [@cgrevisse](https://github.com/cgrevisse), University of Luxembourg (christian.grevisse@uni.lu).
 
 ## Bugs, Comments, Suggestions, Contributions?
 
