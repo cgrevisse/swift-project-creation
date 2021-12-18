@@ -64,7 +64,7 @@ export class AppModel {
 	}
 
 	createPackageFile(projectFolder: string, packageName: string) {
-		let swiftToolsVersion = vscode.workspace.getConfiguration('swift-project-creation.swift').get('toolsVersion', '5.3');
+		let swiftToolsVersion = vscode.workspace.getConfiguration('swift-project-creation.swift').get('toolsVersion', '5.5');
 
 		this.makeFileSync(path.join(projectFolder, "Package.swift"), `// swift-tools-version:${swiftToolsVersion}
 import PackageDescription
@@ -76,7 +76,7 @@ let package = Package(
 	],
 	dependencies: [],
 	targets: [
-		.target(name: "${packageName}", dependencies: [])
+		.executableTarget(name: "${packageName}", dependencies: [])
 	]
 )
 `

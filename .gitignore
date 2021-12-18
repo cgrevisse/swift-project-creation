@@ -5,3 +5,10 @@ node_modules
 .DS_Store
 package-lock.json
 Update Guide.md
+dist
+/.build
+/Packages
+/*.xcodeproj
+xcuserdata/
+DerivedData/
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
