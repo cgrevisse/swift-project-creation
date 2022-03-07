@@ -46,6 +46,8 @@ export class AppModel {
 		let targetFolder = path.join(sourcesFolder, packageName);
 		let vscodeFolder = path.join(projectFolder, ".vscode");
 
+		let createLaunchConfigurations = vscode.workspace.getConfiguration('swift-project-creation.swift').get('createLaunchConfigurations', false);
+
 		try {
 			this.makeDirSync(projectFolder);
 
@@ -53,7 +55,11 @@ export class AppModel {
 			this.createReadme(projectFolder, packageName);
 			this.createGitIgnore(projectFolder);
 			this.createMainFile(targetFolder);
-			this.createLaunchFile(vscodeFolder, packageName);
+
+			if(createLaunchConfigurations) {
+				this.createLaunchFile(vscodeFolder, packageName);
+			}
+			
 			this.createTasksFile(vscodeFolder, packageName);
 
 			this.openProject(projectFolder);

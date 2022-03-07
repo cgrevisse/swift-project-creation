@@ -4,7 +4,7 @@ This extension allows to create an empty Swift project in VS Code. The necessary
 
 The minimal Swift version (`swift-tools-version`) to be used in the `Package.swift` file can be set in the *Settings* (`swift-project-creation.swift.toolsVersion`).
 
-This extension works well with Apple's [SourceKit-LSP for Visual Studio Code](https://github.com/apple/sourcekit-lsp/tree/main/Editors/vscode).
+This extension works well with the [Swift for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=sswg.swift-lang) extension.
 
 ## Installation
 You can install this extension from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=cgrevisse.swift-project-creation).

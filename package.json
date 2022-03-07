@@ -9,7 +9,7 @@
 	},
 	"publisher": "cgrevisse",
 	"license": "MIT",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/cgrevisse/swift-project-creation"
@@ -55,6 +55,11 @@
 					"default": "5.5",
 					"pattern": "^\\d+\\.(\\d+\\.)?\\d+$",
 					"patternErrorMessage": "Enter a version number, e.g., 5.3 or 4.2.1"
+				},
+				"swift-project-creation.swift.createLaunchConfigurations": {
+					"markdownDescription": "Create launch configurations. Unnecessary if [Swift for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=sswg.swift-lang) extension is installed.",
+					"type": "boolean",
+					"default": false
 				}
 			}
 		}
